@@ -1,8 +1,13 @@
+spring:
+  profiles:
+    active: test
 server:
   port: 8080
   context-path: /
   
-
+---
+spring:
+  profiles: test
 spring:
    datasource:
       driver-class-name: com.mysql.jdbc.Driver
@@ -17,6 +22,27 @@ spring:
    mvc:
      favicon:
        enabled: false
-
-    
 imageFilePath: F:/git/2.project/film/src/main/webapp/static/filmImage/
+---
+spring:
+  profiles: prod
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,\
+                        classpath:/static/,classpath:/public/,file:${imageFilePath}
+spring:
+   datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/db_film?useSSL=false
+      username: root
+      password: 666666
+   jpa:
+     hibernate.ddl-auto: update
+     show-sql: true
+   thymeleaf:
+    cache: false
+   mvc:
+     favicon:
+       enabled: false
+imageFilePath: /root/git/film/pic
