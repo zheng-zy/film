@@ -1,0 +1,34 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+cache:
+  directories:
+  - '$HOME/.m2/repository'
+
+#before_install:
+# - chmod +x gradlew
+
+script:
+  - mvn clean package -DskipTests=true
+
+after_success:
+  - cd ./target
+  - git init
+  - git config user.name "zhezhiyong"
+  - git config user.email "zhezhiyong@163.com"
+  - git add spring-boot-jsp.war
+  - git commit -m date +%Y%m%d
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+
+branches:
+  only:
+    - test
+
+notifications:
+  email: false
+
+env:
+  global:
+  - GH_REF=github.com/zheng-zy/film.git
