@@ -18,9 +18,8 @@ after_success:
   - git init
   - git config user.name "zhezhiyong"
   - git config user.email "zhezhiyong@163.com"
-  - GH_DATE='date +%Y%m%d%H%M%S'
   - git add film.jar
-  - git commit -m ${GH_DATE}
+  - git commit -m "test build"
   - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
 
 branches:
