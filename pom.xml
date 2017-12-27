@@ -6,7 +6,7 @@
     <groupId>com.java1234</groupId>
     <artifactId>Film</artifactId>
     <version>v1</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>Film</name>
     <description>Demo project for Spring Boot</description>
