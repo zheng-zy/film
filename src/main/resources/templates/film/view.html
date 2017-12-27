@@ -1,0 +1,85 @@
+<meta charset="UTF-8"/>
+<div id="f">
+    <div class="data_list">
+        <div class="data_list_title">
+            <img src="/static/images/view_icon.png"></img>
+            电影详细信息
+        </div>
+        <div>
+            <div class="film_title"><h3><strong th:text="${film.title}"></strong></h3></div>
+        </div>
+        <div class="film_publishDate">
+            发布时间：<font th:text="${#dates.format(film.publishDate,'yyyy-MM-dd HH:mm:ss')}"></font>
+        </div>
+        <div class="film_content" th:utext="${film.content}"></div>
+        <hr/>
+        <h4>【下载地址】</h4>
+        <div class="alert alert-info" id="link_text">
+            <span id="link_text_span" style="font-size: 14px">百度云：<a href="https://pan.baidu.com/s/1qYOaV8o">https://pan.baidu.com/s/1qYOaV8o</a> 密码：k1ek</span>
+        </div>
+        <hr/>
+        <div style="margin-bottom:20px;">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            <span>播放、下载、离线 有问题请<a href="/feedback/" class="text-info"> 反馈给我们</a>。</span>
+        </div>
+        <hr/>
+        <div class="film_lastAndNextPage" th:utext="${pageCode}"></div>
+    </div>
+
+    <div class="data_list">
+        <div class="data_list_title">
+            <img src="/static/images/list_icon.png"></img>
+            电影网站动态信息列表
+        </div>
+        <div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>发布日期</th>
+                    <th>动态信息</th>
+                    <th>来源于</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="webSiteInfo,webSiteInfoStat:${webSiteInfoList}">
+                    <th scope="row" th:text="${webSiteInfoStat.index+1}"></th>
+                    <td th:text="${#dates.format(webSiteInfo.publishDate,'yyyy-MM-dd')}"></td>
+                    <td>
+                        <a th:href="${webSiteInfo.url}" th:text="${webSiteInfo.info}" th:title="${webSiteInfo.info}"
+                           target="_blank"></a>
+                    </td>
+                    <td>
+                        <a th:href="${webSiteInfo.webSite.url}" target="_blank" th:text="${webSiteInfo.webSite.name}"
+                           th:title="${webSiteInfo.webSite.name}"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="data_list">
+        <div class="data_list_title">
+            <img src="/static/images/guess_icon.png"></img>
+            猜你喜欢
+        </div>
+        <div class="datas rImageDatas">
+            <ul class="imageUl">
+                <li class="imageLi" th:each="film:${randomFilmList}">
+                    <a th:href="'/film/'+${film.id}" target="_blank" th:title="${film.name}">
+                        <img class="indexFilm" th:src="'/static/filmImage/'+${film.imageName}"></img>
+                        <p th:text="${film.name}"></p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <video id="my_video_1" class="video-js vjs-default-skin" width="640px" height="267px"
+           controls="" preload="none" poster='http://video-js.zencoder.com/oceans-clip.jpg'
+           data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
+        <source src="http://k.syasn.com/ru/ru49" type='video/mp4'/>
+    </video>
+</div>
+
+	

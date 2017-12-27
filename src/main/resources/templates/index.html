@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${title}+'-电影推酷网'"></title>
+    <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap-theme.min.css"></link>
+    <link rel="stylesheet" href="/static/css/film.css"></link>
+    <link rel="stylesheet" href="/static/css/video.css"></link>
+    <link href="http://vjs.zencdn.net/6.2.7/video-js.css" rel="stylesheet"></link>
+    <!-- If you'd like to support IE8 -->
+    <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        window.onload = function () {
+            var error = [[${error}]];
+            if (error != null) {
+                alert(error);
+            }
+        };
+
+        $(function () {
+            var $refreshButton = $('#refresh');
+            var $results = $('#css_result');
+
+            function refresh() {
+                var css = $('style.cp-pen-styles').text();
+                $results.html(css);
+            }
+
+            refresh();
+            $refreshButton.click(refresh);
+
+            // Select all the contents when clicked
+            $results.click(function () {
+                $(this).select();
+            });
+        });
+        /*]]>*/
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div th:include="common/head::#h"></div>
+    </div>
+
+    <div class="row">
+        <div th:include="common/menu::#m"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div th:include="${mainPage}::${mainPageKey}"></div>
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="data_list">
+                <div class="data_list_title">
+                    <img src="/static/images/dynamic_icon.png"/>
+                    最新电影动态
+                </div>
+                <div class="datas">
+                    <ul>
+                        <li th:each="newestInfo:${application.newestInfoList}"><span><a
+                                th:href="'/film/'+${newestInfo.film.id}" target="_blank"
+                                th:title="${newestInfo.webSite.name+' -> '+newestInfo.info}"
+                                th:text="${newestInfo.webSite.name+' -> '+newestInfo.info}"></a></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="data_list">
+                <div class="data_list_title">
+                    <img src="/static/images/hot_icon.png"/>
+                    最新热门电影推荐
+                </div>
+                <div class="datas">
+                    <ul>
+                        <li th:each="newestHotFilm:${application.newestHotFilmList}"><span><a
+                                th:href="'/film/'+${newestHotFilm.id}" target="_blank" th:title="${newestHotFilm.name}"
+                                th:text="${newestHotFilm.name }"></a></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="data_list">
+                <div class="data_list_title">
+                    <img src="/static/images/website_icon.png"/>
+                    最新电影网址收录
+                </div>
+                <div class="datas">
+                    <ul>
+                        <li th:each="newestWebSite:${application.newestWebSiteList}"><span><a
+                                th:href="${newestWebSite.url}" target="_blank" th:title="${newestWebSite.name}"
+                                th:text="${newestWebSite.name }"></a></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="data_list">
+                <div class="data_list_title">
+                    <img src="/static/images/film_icon.png"/>
+                    最新电影收录
+                </div>
+                <div class="datas">
+                    <ul>
+                        <li th:each="newestFilm:${application.newestFilmList}"><span><a
+                                th:href="'/film/'+${newestFilm.id}" target="_blank" th:title="${newestFilm.name}"
+                                th:text="${newestFilm.name }"></a></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="data_list">
+                <div class="data_list_title">
+                    <img src="/static/images/link_icon.png"/>
+                    友情链接
+                </div>
+                <div class="datas">
+                    <ul>
+                        <li th:each="link:${application.linkList}"><span><a th:href="${link.url }" target="_blank"
+                                                                            th:title="${link.name}"
+                                                                            th:text="${link.name }"></a></span></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div th:include="common/foot::#f"></div>
+    </div>
+
+</div>
+
+<a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
+<script type="text/javascript" charset="utf-8"
+        src="http://static.bshare.cn/b/buttonLite.js#uuid=&amp;style=3&amp;fs=4&amp;textcolor=#fff&amp;bgcolor=#06C&amp;text=分享到"></script>
+</body>
+</html>
