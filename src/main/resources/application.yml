@@ -43,7 +43,7 @@ spring:
    mvc:
      favicon:
        enabled: false
-#     static-path-pattern: /**
-#   resources:
-#     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${imageFilePath}
+     static-path-pattern: /**
+   resources:
+     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${imageFilePath}
 imageFilePath: /root/pic

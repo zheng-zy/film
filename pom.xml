@@ -6,7 +6,7 @@
     <groupId>com.java1234</groupId>
     <artifactId>Film</artifactId>
     <version>v1</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>Film</name>
     <description>Demo project for Spring Boot</description>
@@ -22,6 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <maven.test.skip>true</maven.test.skip>
     </properties>
 
     <dependencies>
