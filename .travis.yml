@@ -19,7 +19,7 @@ after_success:
   - git config user.name "zhezhiyong"
   - git config user.email "zhezhiyong@163.com"
   - git add spring-boot-jsp.war
-  - git commit -m date +%Y%m%d
+  - git commit -m ${GH_DATE}
   - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
 
 branches:
@@ -32,3 +32,4 @@ notifications:
 env:
   global:
   - GH_REF=github.com/zheng-zy/film.git
+  - GH_DATE='date +%Y%m%d%H%M%S'
