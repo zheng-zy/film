@@ -1,0 +1,13 @@
+<p th:utext="${info.director} + '&lt;br/&gt;' +
+${info.screenwriter} + '&lt;br/&gt;' +
+${info.star} + '&lt;br/&gt;' +
+${info.type} + '&lt;br/&gt;' +
+${info.country} + '&lt;br/&gt;' +
+${info.language} + '&lt;br/&gt;' +
+${info.date} + '&lt;br/&gt;' +
+${info.length} + '&lt;br/&gt;' +
+${info.aka} + '&lt;br/&gt;'"></p>
+
+<p><img th:alt="${info.title}" th:src="${info.picture}" style="height:599px; width:425px" th:title="${info.title}" /></p>
+
+<p th:text="${info.introduction}"></p>
